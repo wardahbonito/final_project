@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <title>Registration</title>
+
+        {% load static %}
+
+        
+
+        <style>
+            body{
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color:#efebe5;
+                background-image: url("{% static 'ocean.jpg' %}");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .container{
+                background-color: rgb(198, 164, 119);
+                border-radius: 20px;
+                text-align: center;
+                width: 500px;
+                font-weight: bold;
+            }
+
+            .container h2{
+                text-align: center;
+                font-size: 30px;
+
+            }
+
+            .container p{
+                text-align: center;
+                font-size: 10px;
+                margin-bottom: 20px;
+            }
+
+            .container label{
+                display: block;
+                margin-bottom: 5px;
+                font-size: 15px;
+                text-align: left;
+                margin-left: 30px;
+            }
+
+            .container input{
+                width: 200px;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 5px seashell;
+                border-radius: 5px;
+                
+            }
+
+            .container textarea{
+                width: 90%;
+                padding: 7px;
+                margin-bottom: 10px;
+                border: 5px seashell;
+                border-radius: 5px;
+            }
+
+            .container button{
+                background-color: whitesmoke;
+                color: rgb(0, 0, 0);
+                padding: 10px;
+                border: 1px;
+                cursor: pointer;
+                font-size: 12px;
+                border-radius: 5px;
+                margin: 5px;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+            }
+
+            .container button:hover{
+                background-color: #d0afaf;
+                border-radius: 10px;
+                font-size: 16px;
+            }
+
+            .group{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .group .field{
+                width: 400px;
+            }
+
+            .container a{
+                text-decoration: none;
+                color: black;
+            }
+            
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+        <h2>REGISTRATION FORM</h2>
+        <p>Fill out the form carefully for registration</p>
+        <br>
+        <br>
+        <br>
+        
+        <form action="" method="post">
+           {%csrf_token%}
+            <div class="group">
+                <div class="field">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+                </div>
+
+            <div class="field">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            </div>
+            </div><br>
+
+            <div class="group">
+                <div class="field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            </div>
+            
+
+            <div class="field">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            </div>
+            </div>
+
+            <label for="course">Course:</label>
+            <input type="text" id="course" name="course" required>
+            <br>
+            <button type="submit">REGISTER</button><br>
+            <button><a href="{% url 'index' %}">BACK TO HOMEPAGE</a></button>
+            
+        </form>
+    </div>
+
+    </body>
+</html>

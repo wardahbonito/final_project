@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>Learn More</title>
+
+        {% load static %}
+
+        <style>
+            body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #efebe5;
+            background-image: url("{% static 'ocean.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            background-color: rgb(198, 164, 119, 0.652);
+            padding: 10px;
+            font-size: 24px;
+            margin-top: 20px;
+            border-radius: 10px;
+            margin: 3%;
+
+
+        }
+
+        .mix{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 7%;
+        }     
+        
+        h1{
+            font-size: 80px;
+            color: white;
+        }
+
+        button {
+            background-color: #c2aa8c;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 7px;
+            margin: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #9c0c0c;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0px;
+            background: rgb(190, 128, 22, 0.652);
+            color: white;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(190, 128, 22, 0.652);
+            color: white;
+            text-align: center;
+        }
+
+
+        
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+        <h1>Learn More</h1>
+        <button><a href="{% url 'welcome-user' %}">BACK</a></button></div>
+
+        <br>
+        <br>
+        <div class="mix">
+            
+            <div class="container">
+            <p>CLUB DETAILS</p>
+            <p>KPMIM CLUB</p>
+            <p>Help Student on Any Problem</p>
+            </div>
+
+            <div class="container">
+                <p>CLUB PRESIDENT</p>
+                <p>Muhammad Ali</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</p>
+        </div>
+
+    </body>
+</html>
