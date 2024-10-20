@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>Homepage</title>
+
+        {% load static %}
+
+        <style>
+            body{
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #efebe5;
+                background-image: url("{% static 'green.jpeg' %}");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            h1{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 100px;
+            }
+
+            h6{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 30px;
+            }
+
+            h3{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 40px;
+            }
+
+            button{
+                width: 200px;
+                padding: 15px;
+                margin: 10px;
+                background-color: #c2aa8c;
+                text-align: center;
+                border-radius: 5px;
+                font-size: 16px;
+                font-weight: bold;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+            }
+
+            button:hover{
+                background-color: #d0afaf;
+                border-radius: 10px;
+                font-size: 16px;
+            }
+
+            a{
+                text-decoration: none;
+                color: black;
+            } 
+
+            .header {
+                padding: 60px;
+                text-align: center;
+                background: rgb(190, 128, 22, 0.652);
+                color: white;
+                font-size: 30px;
+            }
+            
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: rgb(190, 128, 22, 0.652);
+                color: white;
+                text-align: center;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <h6>WELCOME TO</h6>
+            <h1>PEER CLUB</h1>
+            <h3>KPMIM</h3>
+            <button><a href="{% url 'register' %}">REGISTER</a></button><br>
+            <button><a href="{% url 'login' %}">LOGIN</a></button>
+        </center>
+        
+        <div class="footer">
+            <p>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</p>
+        </div>
+    </body>
+</html>

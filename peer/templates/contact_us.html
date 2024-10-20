@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Contact Us</title>
+
+        {% load static %}
+        <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #efebe5;
+            background-image: url("{% static 'ocean.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            background-color: rgb(198, 164, 119, 0.652);
+            padding: 10px;
+            font-size: 24px;
+            margin-top: 20px;
+            border-radius: 10px;
+            margin: 3%;
+
+
+        }
+
+        .mix{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 5%;
+        }     
+        
+        h1{
+            font-size: 50px;
+            color: white;
+        }
+
+        button {
+            background-color: #c2aa8c;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 7px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #ab8253;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        header {
+            padding: 40px;
+            text-align: center;
+            background: rgb(190, 128, 22, 0.652);
+            color: white;
+            width: 100%;
+        }
+        
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(190, 128, 22, 0.652);
+            color: white;
+            text-align: center;
+        }
+
+        img {
+            height: 40px; 
+            width: auto;   
+            margin-right: 20px;
+        }
+
+        </style>
+    </head>
+
+    <body>
+
+        <header>
+        <h1>Contact Us</h1>
+        <button><a href="{% url 'welcome-user' %}">BACK</a></button></div></header>
+
+        <div class="mix">
+
+            <div class="container">
+                <p>Connection</p>
+                <p>6012 562 3421</p>
+                <p>peerclub@gmail.com</p>
+            </div>
+            <div class="container">
+                <p>Get Social</p>
+                <p>Facebook: peer club community</p>
+                <p>Instargram: peerClub</p>
+                <p>TikTok: peerClub</p>
+                <p>Tag Us in Your Photo!</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</p>
+        </div>
+    </body>
+</html>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Student, Admin, Registration, Event
+from .models import Student, Admin, Registration, Event, Fill
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
@@ -28,11 +28,16 @@ def register(request):
 
 def man_stud(request):
     students = Student.objects.all()
+    
+    if request.method == 'GET':
+        c_student_name = request.GET.get('c_student_name')
+        if c_student_name:
+            students = Student.objects.filter(student_name=c_student_name)
+    
     context = {
-        'students':students,
+        'students': students,
     }
-
-    return render(request, 'man_stud.html',context)
+    return render(request, 'man_stud.html', context)
 
 def login(request):
     if request.method == 'POST':
@@ -41,8 +46,6 @@ def login(request):
 
         student = search(Student, email)
         admin = search(Admin, email)
-        #register = search(Registration, email)
-
 
         if student:
             if student.password == password:
@@ -51,13 +54,7 @@ def login(request):
                 return redirect('welcome-user')
             else:
                 messages.error(request, "Password is incorrect.")
-        #elif register:
-            #if register.password == password:
-             #   request.session['user_type'] = 'staff'
-              #  request.session['user_id'] = register.registeration_id
-                #return redirect('staffmenu')
-            #else:
-             #   messages.error(request, "Password is incorrect.")
+
         elif admin:
             if admin.password == password:
                 request.session['user_type'] = 'admin'
@@ -78,10 +75,50 @@ def search(model, email):
         return None
 
 def welcome_user(request):
-    return render(request, 'welcome-user.html')
+    student = request.user
+    context = {
+        'student': student
+    }
+    return render(request, 'welcome-user.html', context)
 
 def fill(request):
+
+    if request.method == 'POST':
+        c_fill_name = request.POST['name']
+        c_fill_phone = request.POST['phone']
+        c_fill_email = request.POST['email']
+        c_fill_course = request.POST['course']
+        c_event_id = request.POST['event']
+        
+        myevent = Event.objects.get(event_id=c_event_id) 
+        
+        data = Fill (
+            fill_name=c_fill_name,
+            fill_phone=c_fill_phone,
+            fill_email=c_fill_email,
+            fill_course=c_fill_course,
+            event_id=myevent 
+        )
+        
+        data.save()  
+
+        return redirect('fill')
+
     return render(request, 'fill.html')
+
+def list(request):
+
+    fill = Fill.objects.all()
+    if request.method == 'GET':
+        c_fill_name = request.GET.get('c_fill_name')
+        if c_fill_name:
+            fill = Fill.objects.filter(fill_name=c_fill_name)
+
+    context = {
+        'fill' : fill,
+    }
+
+    return render(request, 'list.html', context)
 
 def learn_more(request):
     return render(request, 'learn_more.html')
@@ -96,34 +133,100 @@ def admin_page(request):
     }
     return render(request, 'admin_page.html',context)
 
-def list(request):
-    mystudent = Student.objects.all().values()
-    myevent = Event.objects.all().values()
-
-    dict = {
-        'mystudent':mystudent,
-        'myevent' :myevent,
-    }
-
-    if request.method == 'POST':
-        c_student_name = request.POST['name']
-        c_phone_number = request.POST['phone']
-        c_email = request.POST['email']
-        c_student_course = request.POST['course']
-        c_event_id = request.POST['event']
-
-        data = Student (student_name=c_student_name, phone_number=c_phone_number, email = c_email, student_course=c_student_course)
-        dataa = Event (event_id=c_event_id)
-        data.save()
-        dataa.save()
-    return render(request, 'list.html', dict)
-
 def add(request):
 
-    return render(request, 'add.html')
+    event = Event.objects.all().values()
+    context = {
+        'event':event
+    }
+
+    if request.method == 'PUT':
+        c_event_id = request.POST['id']
+        c_event_name = request.POST['name']
+        c_event_location = request.POST['location']
+        c_event_date = request.POST['date']
+
+        data = Event(event_id=c_event_id, event_name=c_event_name, event_location=c_event_location, event_date=c_event_date)
+        data.save()
+
+    return render(request, 'add.html', context)
 
 def delete_student(request, student_id):
     data = Student.objects.get(student_id=student_id)
     data.delete()
 
     return HttpResponseRedirect(reverse('man_stud'))
+
+def stud_profile(request):
+    user_id = request.session.get('user_id')
+    mystudent = Student.objects.get(student_id=user_id)
+    
+    # Access the attributes from the mystudent object
+    ids = mystudent.student_id
+    name = mystudent.student_name
+    email = mystudent.email
+    phone = mystudent.phone_number
+    password = mystudent.password
+    course = mystudent.student_course
+    
+    context = {
+        'ids': ids,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'password': password,
+        'course': course,
+    }
+
+    return render(request, 'stud_profile.html', context)
+
+
+def event(request):
+    events = Event.objects.all().values()
+    if request.method == 'GET':
+        c_event_name = request.GET.get('c_event_name')
+        if c_event_name:
+            events = Event.objects.filter(event_name=c_event_name)
+    
+    context = {
+        'event': events
+    }
+    return render(request, 'event.html', context)
+
+
+def delete_event(request,event_id):
+    data = Event.objects.get(event_id=event_id)
+    data.delete()
+
+    return HttpResponseRedirect(reverse('add'))
+
+def update_event(request, event_id):
+    data = Event.objects.get(event_id=event_id)
+    dict = {
+        'data' : data
+    }
+
+    return render(request, 'update_event.html', dict)
+
+def save_update_event(request, event_id):
+    c_event_name = request.POST.get('event_name')
+    c_event_location = request.POST.get('event_location')
+    c_event_date = request.POST.get('event_date')
+
+    data = Event.objects.get(event_id=event_id)
+    data.event_name = c_event_name
+    data.event_location = c_event_location
+    data.event_date = c_event_date
+    data.save()
+    return HttpResponseRedirect (reverse("add"))
+
+def delete_list(request, fill_id):
+    data = Fill.objects.get(fill_id=fill_id)
+    data.delete()
+
+    return HttpResponseRedirect(reverse('fill'))
+
+def logout(request):
+    request.session.flush()
+    messages.info(request, "You have been logged out.")
+    return redirect('login')

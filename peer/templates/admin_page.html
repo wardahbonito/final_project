@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Admin</title>
+
+    {% load static %}
+    <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #efebe5;
+            background-image: url("{% static 'air.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        button {
+            background-color: #c2aa8c;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 7px;
+            margin: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #ab8253;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .group {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+        }
+
+        .welcome-text {
+            font-size: 50px;
+            margin-bottom: 20px;
+            margin: 2%;
+        }
+
+        .container {
+            background-color: #d2a679;
+            padding: 10px;
+            font-size: 24px;
+            margin-top: 20px;
+            border-radius: 10px;
+            margin: 3%;
+
+        }
+
+        .mix{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 7%;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(190, 128, 22, 0.652);
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(190, 128, 22, 0.652);
+            color: white;
+            text-align: center;
+        }
+
+        li{
+            list-style-type: none;
+        }
+
+        .group img {
+            height: 40px; 
+            width: auto;   
+            margin-right: 20px;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <div class="group">
+                    <a href="{% url 'admin_page' %}"><img src="{% static 'logo.png' %}" style="height: 30; width: 40;" ></a>
+                    <li><button><a href="{% url 'man_stud' %}">MANAGE STUDENT</a></button></li>
+                    <li><button><a href="{% url 'list' %}">LIST NAME</a></button></li>
+                    <li><button><a href="#">PROFILE</a></button></li>
+                    <li><button><a href="{% url 'add' %}">ADD/DELETE EVENT</a></button></li>
+                    <li><button><a href="{% url 'index' %}">BACK TO HOMEPAGE</a></button></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+        <div class="welcome-text">WELCOME ADMIN!</div>
+        
+        
+        <div class="footer">
+            <p>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</p>
+        </div>
+ 
+</body>
+</html>

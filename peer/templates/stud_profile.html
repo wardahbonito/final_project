@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <title>Student Profile</title>
+
+        {% load static %}
+        <style>
+            body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #efebe5;
+            background-image: url("{% static 'ocean.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            background-color: rgb(198, 164, 119, 0.652);
+            padding: 10px;
+            font-size: 24px;
+            margin-top: 20px;
+            border-radius: 10px;
+            margin: 3%;
+
+
+        }
+
+        .mix{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 5%;
+        }     
+        
+        h1{
+            font-size: 80px;
+            color: white;
+        }
+
+        button {
+            background-color: #c2aa8c;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 7px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #ab8253;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        .header {
+            padding: 60px;
+            text-align: center;
+            background: rgb(190, 128, 22, 0.652);
+            color: white;
+            font-size: 30px;
+            width: 100%;
+        }
+        
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(190, 128, 22, 0.652);
+            color: white;
+            text-align: center;
+        }
+
+        img {
+            height: 40px; 
+            width: auto;   
+            margin-right: 20px;
+        }
+        </style>
+    </head>
+
+    <body>
+
+        <h1>Profile</h1>
+        <br>
+       <center>
+            <table>
+                <tr>
+                    <td>ID:</td>
+                    <td style="padding-left: 8px;">{{ ids }}</td>
+                </tr>
+
+                <tr>
+                    <td>Name:</td>
+                    <td style="padding-left: 8px;">{{ name }}</td>
+                </tr>
+
+                <tr>
+                    <td>Email:</td>
+                    <td style="padding-left: 8px;">{{ email }}</td>
+                </tr>
+
+                <tr>
+                    <td>Phone Number:</td>
+                    <td style="padding-left: 8px;">{{ phone }}</td>
+                </tr>
+
+                <tr>
+                    <td>Course:</td>
+                    <td style="padding-left: 8px;">{{ course }}</td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td style="padding-left: 8px;">{{ password }}</td>
+                </tr>
+            </table>
+       </center>
+        <button><a href="{% url 'welcome-user' %}">BACK</a></button>
+    </body>
+</html>

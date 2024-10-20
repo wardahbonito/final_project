@@ -14,4 +14,12 @@ urlpatterns=[
     path("list/", views.list, name='list'),
     path("add/", views.add, name='add'),
     path("man_stud/delete_student/<int:student_id>/", views.delete_student, name="delete_student"),
+    path("stud_profile/", views.stud_profile, name='stud_profile'),
+    path("event/", views.event, name="event"),
+    path("add/delete_event/<str:event_id>/", views.delete_event, name="delete_event"),
+    path("add/update_event/<str:event_id>/", views.update_event, name='update_event'),
+    path("add/update_event/save_update_event/<str:event_id>", views.save_update_event, name='save_update_event'),
+    path("list/delete_list/<int:student_id>", views.delete_list, name='delete_list'),
+    path("add/search_event/<str:event_name>/", views.add, name='add'),
+    path('logout/',views.logout,name='logout'),
 ] 
