@@ -100,7 +100,7 @@
                 height: 30%;
         }
 
-        .footer {
+        footer {
             position: fixed;
             left: 0;
             bottom: 0;
@@ -125,16 +125,16 @@
     <body>
         <div class="container">
 
-            <form action="{% url 'save_update_event' data.event_id %}" method="post">
+            <form action="{% url 'save_update_event' %}" method="post">
                 {% csrf_token %}
 
-                Event id: <input type="text" name="event_id" value="{{data.event_id}}" disabled="false">
+                Event id: <input type="text" name="id" value="{{data.event_id}}" disabled="false">
                 <br>
-                Event Name: <input type="text" name="event_name" value="{{data.event_name}}">
+                Event Name: <input type="text" name="name" value="{{data.event_name}}">
                 <br>
-                Event Location: <input type="text" name="event_location" value="{{data.event_location}}">
+                Event Location: <input type="text" name="location" value="{{data.event_location}}">
                 <br>
-                Event Date:<input type="date" name="event_date" value="{{data.event_date}}">
+                Event Date:<input type="date" name="date" value="{{data.event_date}}">
                 <br>
                 <br>
                 <center><input type="submit" value="SAVE"></center>
@@ -142,8 +142,8 @@
         </div>
 
             <button><a href="{% url 'add' %}">BACK</a></button>
-            <div class="footer">
-                <p>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</p>
-            </div>
+
+            <footer>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</footer>
+
     </body>
 </html>

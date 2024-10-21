@@ -101,6 +101,15 @@
     </head>
 
     <body>
+        <center>
+            <div class="messages" style="z-index: 3;">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div> 
+        </center>
         <div class="container">
         <h2>REGISTRATION FORM</h2>
         <p>Fill out the form carefully for registration</p>

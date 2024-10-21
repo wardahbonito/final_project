@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>Welcome User</title>
+    <head>
+        <title>Update Event</title>
 
-    {% load static %}
-    <style>
-        body {
+        {% load static %}
+        <style>
+            body {
             background-image: url("{% static 'ocean.jpg' %}");
             background-repeat: no-repeat;
             background-size: cover;
@@ -18,20 +17,10 @@
             margin: 0;
         }
 
-        header {
+        .header {
             background-color: rgba(133, 101, 52, 0.367);
-            color: white;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
+            padding: 10%;
             text-align: center;
-            background: rgba(190, 128, 22, 0.652);
-            color: rgb(190, 128, 22);
-            font-size: 30px;
-            width: 100%;
-            height: 20%;
         }
 
         
@@ -58,7 +47,7 @@
             display: flex;
             justify-content: center;
             flex-direction: row;
-            margin-top: 70px;
+            margin-top: 170px;
             
         }
 
@@ -67,16 +56,10 @@
             color: rgb(0, 0, 0);
         }
 
-        .welcome-text {
-            font-size: 50px;
-            margin-bottom: 10px;
-            margin: 1%;
-        }
-
         .container {
-            background-color: #d2a679;
+            background-color: #d2a679bc;
             padding: 10px;
-            font-size: 24px;
+            font-size: 18px;
             margin-top: 20px;
             border-radius: 10px;
             margin: 3%;
@@ -84,11 +67,37 @@
 
         }
 
+        table {
+                width: 80%;
+                margin: 20px auto;
+                border-collapse: collapse;
+            }
+
+        th, td {
+            border: 1px solid #5a3e36;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f0e5d8;
+        }
+
         .mix{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             margin: 7%;
+        }
+
+        header{
+                padding: 2px;
+                text-align: center;
+                background: rgba(190, 128, 22, 0.652);
+                color: rgb(190, 128, 22);
+                font-size: 30px;
+                width: 100%;
+                height: 30%;
         }
 
         footer {
@@ -110,33 +119,31 @@
             width: auto;   /* Maintain the aspect ratio */
             margin-right: 20px; /* Adds space between the image and the buttons */
         }
+        </style>
+    </head>
 
-    </style>
-</head>
-<body>
+    <body>
+        <div class="container">
 
-        <header>
-            <nav>
-                <ul>
-                <div class="group">
-                <a href="{% url 'welcome-user' %}"><img src="{% static 'logo.png' %}"></a>
-                <li><button><a href="{% url 'learn_more' %}">LEARN MORE</a></button></li>
-                <li><button><a href="{% url 'contact_us' %}">CONTACT US</a></button></li>
-                <li><button><a href="{% url 'stud_profile' %}">PROFILE</a></button></li>
-                <li><button><a href="{% url 'index' %}">BACK TO HOMEPAGE</a></button></li>
-            </div>
-            </ul>
-            </nav>
-        </header>
+            <form action="{% url 'save_update_profile' data.student_id %}" method="post">
+                {% csrf_token %}
 
-        <div class="welcome-text">WELCOME USER!</div>
+                Name: <input type="text" name="student_name" value="{{data.student_name}}">
+                <br>
+                Email: <input type="email" name="email" value="{{data.email}}">
+                <br>
+                Phone Number:<input type="text" name="phone_number" value="{{data.phone_number}}">
+                <br>
+                Course:<input type="text" name="student_course" value="{{data.student_course}}">
+                <br>
+                
+                <center><input type="submit" value="SAVE"></center>
+            </form>
+        </div>
 
-        <h3>CHOOSE EVENT!</h3>
+            <button><a href="{% url 'stud_profile' %}">BACK</a></button>
 
-        <button><a href="{% url 'event' %}">Press here to check out the program of Peer Club!</a></button>
+            <footer>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</footer>
 
-        <footer>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</footer>
-
-</body>
+    </body>
 </html>
-

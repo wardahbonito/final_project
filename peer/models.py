@@ -17,7 +17,7 @@ class Admin(models.Model):
     admin_role=models.CharField(max_length=10)
 
 class Event(models.Model):
-    event_id=models.CharField(max_length=10, primary_key=True)
+    event_id=models.CharField(max_length=10)
     event_name=models.CharField(max_length=15)
     event_location=models.CharField(max_length=20, default=None)
     event_date=models.DateField(max_length=30, default=None)
@@ -26,7 +26,7 @@ class Registration(models.Model):
     registration_id=models.AutoField(primary_key=True)
     student_id=models.ForeignKey(Student, on_delete=models.CASCADE)
     registration_date=models.DateField(max_length=10)
-    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event_id=models.ForeignKey(Event, on_delete=models.CASCADE, default=1)
 
 class Fill(models.Model):
     fill_id=models.AutoField(primary_key=True)

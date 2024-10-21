@@ -1,10 +1,10 @@
 <html>
     <head>
-        <title>List Name</title>
+        <title>Student Admin</title>
 
         {% load static %}
         <style>
-        body {
+            body {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             display: flex;
             flex-direction: column;
@@ -19,25 +19,24 @@
         }
 
         .container {
-            background-color: #d2a679a2;
+            background-color: rgb(198, 164, 119, 0.652);
             padding: 10px;
             font-size: 24px;
             margin-top: 20px;
             border-radius: 10px;
             margin: 3%;
-            margin-bottom: 20px;
         }
 
         .mix{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            margin: 7%;
+            margin: 5%;
         }     
         
         h1{
-            font-size: 40px;
-            color: rgb(255, 255, 255);
+            font-size: 80px;
+            color: white;
         }
 
         button {
@@ -48,8 +47,7 @@
             cursor: pointer;
             font-size: 12px;
             border-radius: 7px;
-            margin: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.363);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         button:hover {
@@ -61,32 +59,49 @@
         a{
             text-decoration: none;
         }
+
+        .header {
+            padding: 60px;
+            text-align: center;
+            background: rgb(190, 128, 22, 0.652);
+            color: white;
+            font-size: 30px;
+            width: 100%;
+        }
         
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(190, 128, 22, 0.652);
+            color: white;
+            text-align: center;
+        }
+
+        img {
+            height: 40px; 
+            width: auto;   
+            margin-right: 20px;
+        }
+
         table {
                 width: 80%;
                 margin: 20px auto;
                 border-collapse: collapse;
-            }
+        }
 
-            th, td {
+        th, td {
                 border: 1px solid #5a3e36;
                 padding: 10px;
                 text-align: center;
-            }
+        }
 
-            th {
+        th {
                 background-color: #f0e5d8;
-            }
+        }
 
-            .header {
-                padding: 60px;
-                text-align: center;
-                background: rgb(190, 128, 22, 0.652);
-                color: white;
-                font-size: 30px;
-            }
-
-            footer {
+        footer {
                 position: fixed;
                 left: 0;
                 bottom: 0;
@@ -95,49 +110,40 @@
                 color: white;
                 text-align: center;
             }
-
-
-            
         </style>
     </head>
+
     <body>
-        <h1>List Name</h1>
 
-        <form action="" method="get">
-            Search Name: <input type="text" name="c_fill_name" placeholder="eg. event name">
-            <input type="submit" value="SEARCH">
-        </form>
-
+        <h1>Profile</h1>
+        <br>
         <div class="container">
-        <table>
-            <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Course</th>
-                <th>Event</th>
-                <th>Delete?</th>
-                </tr>
-    
-                {% for x in fill %}
+       <center>
+            <table>
                 <tr>
-                    <td>{{ x.fill_id }}</td>
-                    <td>{{ x.fill_name }}</td>
-                    <td>{{ x.fill_phone }}</td>
-                    <td>{{ x.fill_email }}</td>
-                    <td>{{ x.fill_course }}</td>
-                    <td>{{ x.event_id }}</td>
-                    <td><a href="delete_list/{{x.fill_id}}">Delete</a></td>
-
+                    <td>ID:</td>
+                    <td style="padding-left: 8px;">{{ ids }}</td>
                 </tr>
 
-                {% endfor %}
-        </table>
-        </div>
+                <tr>
+                    <td>Name:</td>
+                    <td style="padding-left: 8px;">{{ name }}</td>
+                </tr>
 
+                <tr>
+                    <td>Email:</td>
+                    <td style="padding-left: 8px;">{{ email }}</td>
+                </tr>
+
+                <tr>
+                    <td>Password:</td>
+                    <td style="padding-left: 8px;">{{ password }}</td>
+                </tr>
+            </table>
+       </center>
+       </div>
         <button><a href="{% url 'admin_page' %}">BACK</a></button>
-        
+
         <footer>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</footer>
 
     </body>

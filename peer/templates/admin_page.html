@@ -85,7 +85,7 @@
             z-index: 1000;
         }
 
-        .footer {
+        footer {
             position: fixed;
             left: 0;
             bottom: 0;
@@ -117,7 +117,7 @@
                     <a href="{% url 'admin_page' %}"><img src="{% static 'logo.png' %}" style="height: 30; width: 40;" ></a>
                     <li><button><a href="{% url 'man_stud' %}">MANAGE STUDENT</a></button></li>
                     <li><button><a href="{% url 'list' %}">LIST NAME</a></button></li>
-                    <li><button><a href="#">PROFILE</a></button></li>
+                    <li><button><a href="{% url 'stud_admin' %}">PROFILE</a></button></li>
                     <li><button><a href="{% url 'add' %}">ADD/DELETE EVENT</a></button></li>
                     <li><button><a href="{% url 'index' %}">BACK TO HOMEPAGE</a></button></li>
                 </div>
@@ -125,11 +125,9 @@
         </nav>
     </header>
         <div class="welcome-text">WELCOME ADMIN!</div>
+    
+            <footer>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</footer>
         
-        
-        <div class="footer">
-            <p>COPYRIGHT &copy; WARDAH TIHANI BINTI ZULKARNAIN PEER_CLUB. All Right Reserved</p>
-        </div>
  
 </body>
 </html>

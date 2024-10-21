@@ -23,6 +23,7 @@ def register(request):
 
         data = Student(student_name=c_student_name, email=c_student_email, password=c_student_password, phone_number=c_phone_number,student_course=c_student_course)
         data.save()
+        messages.success(request,"Success")
         
     return render(request, 'register.html', dict)
 
@@ -166,7 +167,6 @@ def stud_profile(request):
     name = mystudent.student_name
     email = mystudent.email
     phone = mystudent.phone_number
-    password = mystudent.password
     course = mystudent.student_course
     
     context = {
@@ -174,11 +174,29 @@ def stud_profile(request):
         'name': name,
         'email': email,
         'phone': phone,
-        'password': password,
         'course': course,
     }
 
     return render(request, 'stud_profile.html', context)
+
+def stud_admin(request):
+    user_id = request.session.get('user_id')
+    myadmin = Admin.objects.get(admin_id=user_id)
+    
+    # Access the attributes from the mystudent object
+    ids = myadmin.admin_id
+    name = myadmin.admin_name
+    email = myadmin.email
+    password = myadmin.password
+    
+    context = {
+        'ids': ids,
+        'name': name,
+        'email': email,
+        'password': password,
+    }
+
+    return render(request, 'stud_admin.html', context)
 
 
 def event(request):
@@ -209,24 +227,43 @@ def update_event(request, event_id):
     return render(request, 'update_event.html', dict)
 
 def save_update_event(request, event_id):
-    c_event_name = request.POST.get('event_name')
-    c_event_location = request.POST.get('event_location')
-    c_event_date = request.POST.get('event_date')
+    c_event_name = request.POST['event_name']
+    c_event_location = request.POST['event_location']
+    c_event_date = request.POST['event_date']
 
     data = Event.objects.get(event_id=event_id)
     data.event_name = c_event_name
     data.event_location = c_event_location
     data.event_date = c_event_date
     data.save()
+
     return HttpResponseRedirect (reverse("add"))
+
+def edit_profile_s(request):
+    user_id = request.session.get('user_id')
+    data = Student.objects.get(student_id=user_id)
+    context = {
+        'data':data,
+    }
+    return render(request, "edit_profile_s.html",context)
+
+def save_update_profile(request, student_id):
+    c_student_name = request.POST['student_name']
+    c_email = request.POST['email']
+    c_phone_number = request.POST['phone_number']
+    c_student_course = request.POST['student_course']
+
+    data = Student.objects.get(student_id=student_id)
+    data.student_name = c_student_name
+    data.email = c_email
+    data.phone_number = c_phone_number
+    data.student_course = c_student_course
+    data.save()
+
+    return HttpResponseRedirect(reverse("stud_profile"))
 
 def delete_list(request, fill_id):
     data = Fill.objects.get(fill_id=fill_id)
     data.delete()
 
     return HttpResponseRedirect(reverse('fill'))
-
-def logout(request):
-    request.session.flush()
-    messages.info(request, "You have been logged out.")
-    return redirect('login')
